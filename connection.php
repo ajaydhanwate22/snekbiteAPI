@@ -6,9 +6,9 @@ $dbname = "snekbite";
 
 $con = mysqli_connect($hostname, $username, $dbpassword, $dbname);
 
-// if($con){
-//     echo "connected to database";
-// }else{
-//     echo "not connected to database";
-// }
+if($con){
+    echo "connected to database";
+}else{
+    echo "not connected to database";
+}
  ?>

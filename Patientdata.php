@@ -13,7 +13,7 @@ if ($method == "POST") {
 
     $data = json_decode(file_get_contents("php://input"), true);
 
-$name =$_POST["Name"];
+$fullName =$_POST["FullName"];
 $age=$_POST["Age"];
 $gender =$_POST["Gender"];
 $contactNumber =$_POST["ContactNumber"];
@@ -28,8 +28,8 @@ $anyDisablity =$_POST["AnyDisablity"];
 
 
 
-if (empty($name)) {
-    $response['message'] = "Please enter your name.";
+if (empty($fullName)) {
+    $response['message'] = "Please enter your full name.";
     echo json_encode($response);
     exit();
 }
@@ -50,11 +50,6 @@ if (empty($contactNumber)) {
 }
 if (empty($address)) {
     $response['message'] = "Please enter your address.";
-    echo json_encode($response);
-    exit();
-}
-if (empty($snakeID)) {
-    $response['message'] = "Snake ID is required. Please enter the identification of the snake.";
     echo json_encode($response);
     exit();
 }
@@ -91,7 +86,7 @@ if (empty($anyDisablity)) {
 
 
 
-$checkUser = "SELECT * FROM tratmentformdata WHERE Name = '$name' AND ContactNumber = '$contactNumber'";
+$checkUser = "SELECT * FROM patientdata WHERE FullName = '$fullName' AND ContactNumber = '$contactNumber'";
 $checkQuery = mysqli_query($con, $checkUser);
 
 if (mysqli_num_rows($checkQuery) > 0) {
@@ -100,7 +95,7 @@ if (mysqli_num_rows($checkQuery) > 0) {
     exit();
 } else { 
 
-    $query = "INSERT INTO tratmentformdata (Name, Age, Gender, ContactNumber, Address, SnakeID, BiteLocation, AffectedBodypart, UsedASV, Rescuername,Patientstatus,AnyDisablity) VALUES ('$name', '$age', '$gender','$contactNumber','$address', '$snakeID','$biteLocation','$affectedbodypart','$usedASV','$rescuername' ,'$patientstatus', '$anyDisablity',)";
+    $query = "INSERT INTO patientdata (FullName, Age, Gender, ContactNumber, Address, SnakeID, BiteLocation, AffectedBodypart, UsedASV, Rescuername,Patientstatus,AnyDisablity) VALUES ('$fullName', '$age', '$gender','$contactNumber','$address', '$snakeID','$biteLocation','$affectedbodypart','$usedASV','$rescuername' ,'$patientstatus', '$anyDisablity')";
 
     $fire = mysqli_query($con, $query);
     
